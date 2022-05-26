@@ -17,7 +17,7 @@ const extractData = (data) =>{
     aux.img = data.sprites.other.dream_world.front_default;
     aux.types =[];
     aux.types = data.types.map(type => type.type.name );
-    //EXTRAER ATAQUES
+    aux.abilities = data.abilities.map(abilities => abilities.ability.name);
     MAPPED_POKEMON.push(aux);
 } 
 
@@ -33,8 +33,11 @@ const drawPokedex = () => {
         const li$$ = document.createElement('li');
         li$$.innerHTML = `
             <h2>${pokemon.name}</h2>
-            <img src=${pokemon.img} />
+            <div>
+                <img src=${pokemon.img} alt=${pokemon.name} />
+            </div>
         `;
+        li$$.className = 'pokedex-card';
         olPokemon$$.appendChild(li$$);
     })
 }
@@ -42,7 +45,7 @@ const drawPokedex = () => {
 
 
 const initPokedex = async() => {
-    const urlApi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100';
+    const urlApi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20';
    
 
     const listAllPokemons = await getDataPokemonFromApi(urlApi);
