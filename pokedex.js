@@ -29,25 +29,24 @@ const extractData = (data) =>{
     aux.types =[];
     aux.types = data.types.map(type => type.type.name );
     getAllTypes(aux.types);
-    console.log(aux.types);
     aux.abilities = data.abilities.map(abilities => abilities.ability.name);
     MAPPED_POKEMON.push(aux);
 } 
 
-const filterPokemonBy = (search,listPokemons) =>{
+const filterPokemonByNameId = (search) =>{
     search = search.toLowerCase();
-    let filteredPokemonList = listPokemons.filter(pokemon => pokemon.name.includes(search));  
+    let filteredPokemonList = MAPPED_POKEMON.filter(pokemon => pokemon.name.includes(search));  
     if(filteredPokemonList.length ===  0){
-        filteredPokemonList = listPokemons.filter(pokemon => pokemon.id === Number(search));
+        filteredPokemonList = MAPPED_POKEMON.filter(pokemon => pokemon.id === Number(search));
     }
     return filteredPokemonList;
 }
 
-const drawPokedex = (listPokemons) => { 
+const drawPokedex = (listPokemon) => { 
     const olPokemon$$ = document.querySelector('ol');
     olPokemon$$.innerHTML = '';
-    for(pokemon of listPokemons) {
-        const li$$ = document.createElement('li'); //MIRAR COMO SE PONE LA PRIMERA LETRA DE UNA STRING EN MAYUSCULAS MEJOR QUE PONERLO TODO
+    for(pokemon of listPokemon) {
+        const li$$ = document.createElement('li'); 
         li$$.innerHTML = `
             <h2>${pokemon.name.toUpperCase()}</h2> 
             <div class="pokedex-card--image-container">
@@ -59,6 +58,32 @@ const drawPokedex = (listPokemons) => {
     }
 }
 
+const filterPokemonByType = (criteria) =>{
+    const filteredByType = [];
+    MAPPED_POKEMON.forEach(pokemon =>{
+        if(pokemon.types.includes(criteria)){
+            filteredByType.push(pokemon);
+        }
+    })
+    return filteredByType;
+}
+
+const addEventCheckbox = (checkbox) => {
+    checkbox.addEventListener('click',event =>{
+        if(checkbox.checked){
+            checkbox.style.filter = `brightness(0.4)`;
+            drawPokedex(filterPokemonByType(checkbox.name));
+                
+          
+           
+
+        }else{
+            checkbox.style.filter = `brightness(1)`;
+            
+        }
+    })
+}
+
 const drawOptionTypes = () => {
     const div = document.querySelector('.option-types');
     for (const type of TYPES){
@@ -68,28 +93,15 @@ const drawOptionTypes = () => {
         checkbox.style['background-image'] = `url("../images/svgTypes/icon_type_${type}.svg")`;
         checkbox.className = 'option-types-checkbox';
         div.appendChild(checkbox);
-        checkbox.addEventListener('click',event =>{
-            if(checkbox.checked){
-                checkbox.style.filter = `brightness(0.4)`;
-  
-                    
-              
-               
-
-            }else{
-                checkbox.style.filter = `brightness(1)`;
-                //aqui hay que quitarlo
-            }
-        })
+        addEventCheckbox(checkbox);
     }
 }
 
 const inputSearch = () => {
     const searchInput = document.querySelector('[type=search]');
     searchInput.addEventListener('input',event => {
-        drawPokedex(filterPokemonBy(searchInput.value,MAPPED_POKEMON));
+        drawPokedex(filterPokemonByNameId(searchInput.value));
     })
-
 }
 
 const drawSectionFilters = () => {
@@ -111,7 +123,7 @@ const initPokedex = async() => {
   
     drawPokedex(MAPPED_POKEMON);
     drawSectionFilters();
-    
+
 }
 
 
