@@ -1,6 +1,6 @@
 const MAPPED_POKEMON = [];
-let CHECKED_TYPES = [];
 const TYPES = [];
+let BEFORE_SELECTED = '';
  
   
 
@@ -71,14 +71,22 @@ const filterPokemonByType = (criteria) =>{
 const addEventCheckbox = (checkbox) => {
     checkbox.addEventListener('click',event =>{
         if(checkbox.checked){
+            if(BEFORE_SELECTED){ 
+                const selected = document.querySelector(`[name=${BEFORE_SELECTED}]`);
+                console.log(selected);
+                selected.style.filter = `brightness(1)`;
+                checkbox.checked = false;
+            }
+            BEFORE_SELECTED = checkbox.name;
             checkbox.style.filter = `brightness(0.4)`;
             drawPokedex(filterPokemonByType(checkbox.name));
-                
-          
-           
+ 
+            
 
         }else{
+            BEFORE_SELECTED = '';
             checkbox.style.filter = `brightness(1)`;
+            drawPokedex(MAPPED_POKEMON);
             
         }
     })

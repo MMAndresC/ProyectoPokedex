@@ -187,6 +187,8 @@ h2 {
   height: 50px;
   background-size: cover;
   background-repeat: no-repeat;
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
   cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
