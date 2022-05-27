@@ -1,7 +1,25 @@
 const MAPPED_POKEMON = [];
 let CHECKED_TYPES = [];
-const TYPES = [];
- 
+const TYPES = [ //He quitado el "All", y el "Unknown", y "Shadow",
+    "Normal",
+    "Fighting",
+    "Flying",
+    "Poison",
+    "Ground",
+    "Rock",
+    "Bug",
+    "Ghost",
+    "Steel",
+    "Fire",
+    "Water",
+    "Grass",
+    "Electric",
+    "Psychic",
+    "Ice",
+    "Dragon",
+    "Dark",
+    "Fairy"
+  ];
   
 
 
@@ -12,14 +30,6 @@ const getDataPokemonFromApi = (url) => {
         .catch (error => console.log('No se ha podido recuperar los datos de la API', url, error));
 }
 
-const getAllTypes = (pokemonTypes) =>{
-    pokemonTypes.forEach(type =>{
-        if(!TYPES.includes(type)){
-            TYPES.push(type);
-        }
-    })   
-}
-
 const extractData = (data) =>{
     const aux = {};
     aux.name = data.name;
@@ -28,8 +38,6 @@ const extractData = (data) =>{
     aux.img = data.sprites.other.dream_world.front_default;
     aux.types =[];
     aux.types = data.types.map(type => type.type.name );
-    getAllTypes(aux.types);
-    console.log(aux.types);
     aux.abilities = data.abilities.map(abilities => abilities.ability.name);
     MAPPED_POKEMON.push(aux);
 } 
@@ -71,10 +79,14 @@ const drawOptionTypes = () => {
         checkbox.addEventListener('click',event =>{
             if(checkbox.checked){
                 checkbox.style.filter = `brightness(0.4)`;
-  
+                CHECKED_TYPES.push((checkbox.name).toLowerCase);
+                
+                const filtered = MAPPED_POKEMON.filter((pokemon) => {
+                    const matchType = pokemon.types.includes('grass');
+                    //return matchType;
                     
-              
-               
+                });
+                console.log(filtered);
 
             }else{
                 checkbox.style.filter = `brightness(1)`;
@@ -100,7 +112,7 @@ const drawSectionFilters = () => {
 
 
 const initPokedex = async() => {
-    const urlApi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151'; //ACORDARME DE CAMBIAR EL Nº DE POKEMON A 151
+    const urlApi = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20'; //ACORDARME DE CAMBIAR EL Nº DE POKEMON A 151
    
 
     const listAllPokemons = await getDataPokemonFromApi(urlApi);
