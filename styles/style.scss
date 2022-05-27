@@ -9,19 +9,7 @@ h2{
     display:flex;
     flex-direction:column;
     width:100vw;
-    
-    
-
 }
-
-.filters{
-    display:flex;
-    background-color: bisque;
-    height: 25vh;
-    width: 100vw;
-    
-}
-
 
 
 #pokedex{
@@ -54,9 +42,19 @@ h2{
 
 }
 
+.filters{
+    display:flex;
+    align-items:center;
+    background-color: bisque;
+    height: 25vh;
+    width: 100vw;   
+}
+
+
 .option-types{
-    width: 40%;
+    //width: 60%;
     display: flex;
+    
     flex-wrap: wrap;
     justify-content: space-evenly;
 
@@ -68,6 +66,18 @@ h2{
         filter: brightness(1);
         cursor: pointer;
     }
+}
+
+.option-types-container{
+    flex:8;
+}
+
+.search-bar{
+    flex:2
+}
+
+.sort{
+    flex:2
 }
 
 
