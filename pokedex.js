@@ -1,6 +1,5 @@
 const MAPPED_POKEMON = [];
-const TYPES = [
-    "All",
+const TYPES = [ //He quitado el "All", y el "Unknown", y "Shadow",
     "Normal",
     "Fighting",
     "Flying",
@@ -18,9 +17,7 @@ const TYPES = [
     "Ice",
     "Dragon",
     "Dark",
-    "Fairy",
-    "Unknown",
-    "Shadow",
+    "Fairy"
   ];
   
 
@@ -47,7 +44,6 @@ const extractData = (data) =>{
 const filterPokemonBy = (search,listPokemons) =>{
     search = search.toLowerCase();
     let filteredPokemonList = listPokemons.filter(pokemon => pokemon.name.includes(search));  
-    //filteredPokemonList = listPokemons.filter(pokemon => pokemon.id === search);
     if(filteredPokemonList.length ===  0){
         filteredPokemonList = listPokemons.filter(pokemon => pokemon.id === Number(search));
     }
@@ -71,10 +67,15 @@ const drawPokedex = (listPokemons) => {
 }
 
 const drawOptionTypes = () => {
-    const section = document.querySelector('.option-types');
+    const div = document.querySelector('.option-types');
     for (const type of TYPES){
-        section.innerHTML += `
-        <input type="checkbox" name=types class="option-types-checkbox"/>${type}`
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type','checkbox');
+        checkbox.style['background-image'] = `url("../images/svgTypes/icon_type_${type}.svg")`;
+        checkbox.className = 'option-types-checkbox';
+        div.appendChild(checkbox);
+        //checkbox.addEventListener('checked',event =>{
+        //})
     }
 }
 
