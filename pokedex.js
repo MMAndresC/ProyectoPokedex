@@ -1,5 +1,6 @@
 const MAPPED_POKEMON = [];
 const TYPES = [];
+let SORT_OPTION = '';
 let BEFORE_SELECTED = '';
  
   
@@ -60,6 +61,8 @@ const drawPokedex = (listPokemon) => {
 
 const filterPokemonByType = (criteria) =>{
     const filteredByType = [];
+    const inputSearch = document.querySelector(`[type=search]`);
+    inputSearch.value = '';
     MAPPED_POKEMON.forEach(pokemon =>{
         if(pokemon.types.includes(criteria)){
             filteredByType.push(pokemon);
@@ -70,7 +73,6 @@ const filterPokemonByType = (criteria) =>{
 
 const addEventCheckbox = (checkbox) => {
     checkbox.addEventListener('click',event =>{
-        console.log(checkbox.checked);
         if(checkbox.checked){
             if(BEFORE_SELECTED){ 
                 const selected = document.querySelector(`[name=${BEFORE_SELECTED}]`);
@@ -106,7 +108,13 @@ const inputSearch = () => {
     const searchInput = document.querySelector('[type=search]');
     searchInput.addEventListener('input',event => {
         drawPokedex(filterPokemonByNameId(searchInput.value));
-    })
+        if(BEFORE_SELECTED){
+            const checkbox = document.querySelector(`[name=${BEFORE_SELECTED}]`);
+            checkbox.style.filter = `brightness(1)`;
+            checkbox.checked = false;
+            BEFORE_SELECTED = '';
+        } 
+    })     
 }
 
 const drawSectionFilters = () => {
@@ -125,7 +133,6 @@ const initPokedex = async() => {
         const dataTotal = await getDataPokemonFromApi(result.url);
         extractData(dataTotal);
     }
-  
     drawPokedex(MAPPED_POKEMON);
     drawSectionFilters();
 

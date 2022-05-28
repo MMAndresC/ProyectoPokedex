@@ -195,9 +195,9 @@ h2 {
 }
 
 .option-types-container {
-  -webkit-box-flex: 8;
-      -ms-flex: 8;
-          flex: 8;
+  -webkit-box-flex: 7;
+      -ms-flex: 7;
+          flex: 7;
 }
 
 .search-bar {
