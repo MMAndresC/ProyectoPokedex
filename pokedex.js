@@ -74,59 +74,75 @@ const addEventSelector = () =>{
     })
 }
 
-const createDetailsCard =(containerLi$$,pokemon)=>{  //Crea la carta con mas detalles
-    containerLi$$.addEventListener('click', event =>{
-        containerLi$$.innerText = '';
-        containerLi$$.className = 'pokedex-card-details';
-        containerLi$$.innerHTML = `
-            <div>
-                <div> <img src= ${pokemon.sprite} </div>
-                <div>
-                    <span>
-                        <h3>Number:</h3>
-                        <p>${pokemon.id}</p>
-                    </span>
-                    <span>
-                        <h3>Name:</h3>
-                        <p>${pokemon.name}</p>
-                    </span>
-                    <span>
-                        <h3>Height:</h3>
-                        <p>${pokemon.height}</p>
-                    </span>
-                    <span>
-                        <h3>Weight:</h3>
-                        <p>${pokemon.weight}</p>
-                    </span>
-                </div>
-                <div class="container-abilities">
-                    <h3>Types:</h3>
-                    <h3 class="abilities">Abilities:</h3>
-                </div>
-            </div>
-        `;
-        const divAbilities$$= document.querySelector('.container-abilities');
-        const h3$$ = document.querySelector('.abilities');
-        for(type of pokemon.types){
-            const p$$ = document.createElement('p');
-            p$$.innerText = type;
-            divAbilities$$.insertBefore(p$$,h3$$);
-        }
-  
-        for(ability of pokemon.abilities){
-            const p$$ = document.createElement('p');
-            p$$.innerText = ability;
-            divAbilities$$.appendChild(p$$);
-        }
-    })
-    
-
-     
-    
+const createBasicCard = (li$$,pokemon) =>{
+    li$$.innerHTML = `
+    <header>
+        <span>#${pokemon.id}</span>
+        <h2>${pokemon.name.toUpperCase()}</h2> 
+    </header>
+    <div class="pokedex-card--image-container">
+        <img src=${pokemon.img} alt=${pokemon.name} class="pokedex-card--image"/>
+    </div>
+    `;
+    for(type of pokemon.types){
+        const p$$ = document.createElement('p');
+        p$$.className = type;
+        p$$.innerText = `${type}`;
+        li$$.appendChild(p$$);
+    }
+    li$$.className = 'pokedex-card';
 }
 
-const createBasicCard = () =>{
-    
+const createDetailsCard =(containerLi$$,pokemon)=>{  
+    containerLi$$.addEventListener('click', event =>{
+        if( containerLi$$.className == 'pokedex-card'){
+            containerLi$$.innerText = '';
+            containerLi$$.className = 'pokedex-card-details';
+            containerLi$$.innerHTML = `
+                <div>
+                    <div> <img src= ${pokemon.sprite} </div>
+                    <div>
+                        <span>
+                            <h3>Number:</h3>
+                            <p>${pokemon.id}</p>
+                        </span>
+                        <span>
+                            <h3>Name:</h3>
+                            <p>${pokemon.name}</p>
+                        </span>
+                        <span>
+                            <h3>Height:</h3>
+                            <p>${pokemon.height}</p>
+                        </span>
+                        <span>
+                            <h3>Weight:</h3>
+                            <p>${pokemon.weight}</p>
+                        </span>
+                    </div>
+                    <div class="container-abilities">
+                        <h3>Types:</h3>
+                        <h3 class="abilities">Abilities:</h3>
+                    </div>
+                </div>
+            `;
+            const divAbilities$$= document.querySelector('.container-abilities');
+            const h3$$ = document.querySelector('.abilities');
+            for(type of pokemon.types){
+                const p$$ = document.createElement('p');
+                p$$.innerText = type;
+                divAbilities$$.insertBefore(p$$,h3$$);
+            }
+  
+            for(ability of pokemon.abilities){
+                const p$$ = document.createElement('p');
+                p$$.innerText = ability;
+                divAbilities$$.appendChild(p$$);
+            }
+
+        }else{
+            createBasicCard(containerLi$$,pokemon);
+        }
+    }) 
 }
 
 
@@ -139,22 +155,7 @@ const drawPokedex = (listPokemon) => {
     olPokemon$$.innerHTML = '';
     for(pokemon of listSortedPokemon) {
         const li$$ = document.createElement('li'); 
-        li$$.innerHTML = `
-            <header>
-                <span>#${pokemon.id}</span>
-                <h2>${pokemon.name.toUpperCase()}</h2> 
-            </header>
-            <div class="pokedex-card--image-container">
-                <img src=${pokemon.img} alt=${pokemon.name} class="pokedex-card--image"/>
-            </div>
-        `;
-        for(type of pokemon.types){
-            const p$$ = document.createElement('p');
-            p$$.className = type;
-            p$$.innerText = `${type}`;
-            li$$.appendChild(p$$);
-        }
-        li$$.className = 'pokedex-card';
+        createBasicCard(li$$,pokemon);
         createDetailsCard(li$$,pokemon);
         olPokemon$$.appendChild(li$$);
     }
@@ -231,12 +232,6 @@ const inputSearch = () => {
     })     
 }
 
-const drawSectionFilters = () => {
-    drawOptionTypes();
-    inputSearch();
-    addEventSelector();
-    
-}
 
 
 
@@ -250,8 +245,9 @@ const initPokedex = async() => {
         extractData(dataTotal);
     }
     drawPokedex(MAPPED_POKEMON);
-    drawSectionFilters();
-
+    drawOptionTypes();
+    inputSearch();
+    addEventSelector();
 }
 
 
