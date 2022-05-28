@@ -1,6 +1,5 @@
 const MAPPED_POKEMON = [];
 const TYPES = [];
-let SORT_OPTION = '';
 let BEFORE_SELECTED = '';
  
   
@@ -31,6 +30,8 @@ const extractData = (data) =>{
     aux.types = data.types.map(type => type.type.name );
     getAllTypes(aux.types);
     aux.abilities = data.abilities.map(abilities => abilities.ability.name);
+    aux.weight = data.weight;
+    aux.height = data.height;
     MAPPED_POKEMON.push(aux);
 } 
 
@@ -43,7 +44,36 @@ const filterPokemonByNameId = (search) =>{
     return filteredPokemonList;
 }
 
+const sortByName = (item,itemAfter) =>{
+    if (item.name < itemAfter.name){ //Cogido el ejemplo de Mdn
+        return -1;
+        }
+        if (item.name > itemAfter.name) {
+          return 1;
+        }
+        // names must be equal
+        return 0;
+}
+
+const sortBySelected = (listPokemon) =>{
+    const selector = document.querySelector('select');
+    if(selector.value == 'name'){
+        listPokemon.sort(sortByName);
+    }else{
+        listPokemon.sort((item,afterItem) => item[selector.value] - afterItem[selector.value]);
+    }
+}
+
+/* const addEventSelector = () =>{
+    selector.addEventListener('change',event =>{
+        sortBySelected();
+    })
+} */
+
 const drawPokedex = (listPokemon) => { 
+    const listSortedPokemon = listPokemon; 
+    sortBySelected(listSortedPokemon);
+    console.log(listSortedPokemon);
     const olPokemon$$ = document.querySelector('ol');
     olPokemon$$.innerHTML = '';
     for(pokemon of listPokemon) {
@@ -120,6 +150,7 @@ const inputSearch = () => {
 const drawSectionFilters = () => {
     drawOptionTypes();
     inputSearch();
+    
 }
 
 
