@@ -1,0 +1,78 @@
+@import "reset";
+
+.container{
+    background-image: url('../images/catch/fondo1024x576.jpg');
+    width: 1024px;
+    height: 576px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: 10%;
+    
+    
+}
+
+section div{
+    //background-color: green;
+    width: 170px;
+    height: 54px;
+    background-size: contain;
+    background-image: url('../images/catch/kindpng_2487828.png');
+    background-repeat: no-repeat;
+
+    &:hover{
+        cursor: url('../images/catch/Master_Ball_Origin.png'), auto;
+    }
+}
+
+
+
+.rocks{
+    display:flex;
+    justify-content: space-around;
+    margin-bottom:84px;
+}
+
+.position1{
+    margin-left: 217px;
+    background-image:url('../images/catch/question_mark80x80.png')
+}
+
+.position2{
+    margin-right: 104px;
+    background-image:url('../images/catch/question_mark80x80.png')
+}
+
+.medium{
+    display: flex;
+    margin-bottom: 52px;
+}
+
+.position4{
+    margin-right: 20px;
+    margin-left:38px;
+}
+
+.position5{
+    margin-left: 97px;
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.position7{
+    margin-left: -10px;
+}
+
+.position8{
+    margin-left:-68px;
+}
+
+.position10{
+    margin-right: -29px;
+}
+
+
