@@ -68,6 +68,8 @@ const sortBySelected = (listPokemon) =>{
 const addEventSelector = () =>{
     selector = document.querySelector('select');
     selector.addEventListener('change',event =>{
+        clearSelections();
+        clearInput();
         drawPokedex(MAPPED_POKEMON);
     })
 }
@@ -94,8 +96,8 @@ const drawPokedex = (listPokemon) => {
 
 const filterPokemonByType = (criteria) =>{
     const filteredByType = [];
-    const inputSearch = document.querySelector(`[type=search]`);
-    inputSearch.value = '';
+    clearInput();
+    clearSelect();
     MAPPED_POKEMON.forEach(pokemon =>{
         if(pokemon.types.includes(criteria)){
             filteredByType.push(pokemon);
@@ -104,15 +106,20 @@ const filterPokemonByType = (criteria) =>{
     return filteredByType;
 }
 
+//Deselecciona el checkbox de type
+const clearSelections = () =>{ 
+    if(BEFORE_SELECTED){ //Deselecciona el checkbox anteriormente seleccionado
+        const checkbox = document.querySelector(`[name=${BEFORE_SELECTED}]`);
+        checkbox.style.filter = `brightness(1)`;
+        checkbox.checked = false;
+        BEFORE_SELECTED = '';
+    } 
+}
+
 const addEventCheckbox = (checkbox) => {
     checkbox.addEventListener('click',event =>{
         if(checkbox.checked){
-            if(BEFORE_SELECTED){ 
-                const selected = document.querySelector(`[name=${BEFORE_SELECTED}]`);
-                selected.style.filter = `brightness(1)`;
-                selected.checked = false;
-                BEFORE_SELECTED = '';
-            }
+            clearSelections();
             BEFORE_SELECTED = checkbox.name;
             checkbox.style.filter = `brightness(0.4)`;
             drawPokedex(filterPokemonByType(checkbox.name));
@@ -138,16 +145,25 @@ const drawOptionTypes = () => {
 }
 
 
+
+//Pone el value del input de busqueda a vacio
+const clearInput = () =>{
+    const inputSearch = document.querySelector(`[type=search]`);
+    inputSearch.value = '';
+}
+
+//Coloca la opcion de Id por defecto en el select
+const clearSelect = () =>{
+    const select = document.querySelector('select');
+    select.value = 'id';
+}
+
 const inputSearch = () => {
     const searchInput = document.querySelector('[type=search]');
     searchInput.addEventListener('input',event => {
         drawPokedex(filterPokemonByNameId(searchInput.value));
-        if(BEFORE_SELECTED){
-            const checkbox = document.querySelector(`[name=${BEFORE_SELECTED}]`);
-            checkbox.style.filter = `brightness(1)`;
-            checkbox.checked = false;
-            BEFORE_SELECTED = '';
-        } 
+        clearSelections();
+        clearSelect();
     })     
 }
 
