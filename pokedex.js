@@ -55,28 +55,31 @@ const sortByName = (item,itemAfter) =>{
         return 0;
 }
 
+
 const sortBySelected = (listPokemon) =>{
     const selector = document.querySelector('select');
     if(selector.value == 'name'){
         listPokemon.sort(sortByName);
     }else{
-        listPokemon.sort((item,afterItem) => item[selector.value] - afterItem[selector.value]);
+        listPokemon.sort((item, afterItem) => Number(item[selector.value]) - Number(afterItem[selector.value]));        
     }
 }
 
-/* const addEventSelector = () =>{
+const addEventSelector = () =>{
+    selector = document.querySelector('select');
     selector.addEventListener('change',event =>{
-        sortBySelected();
+        drawPokedex(MAPPED_POKEMON);
     })
-} */
+}
 
 const drawPokedex = (listPokemon) => { 
-    const listSortedPokemon = listPokemon; 
-    sortBySelected(listSortedPokemon);
-    console.log(listSortedPokemon);
+    let listSortedPokemon = listPokemon;
+    if(listSortedPokemon){
+        sortBySelected(listSortedPokemon);
+    }
     const olPokemon$$ = document.querySelector('ol');
     olPokemon$$.innerHTML = '';
-    for(pokemon of listPokemon) {
+    for(pokemon of listSortedPokemon) {
         const li$$ = document.createElement('li'); 
         li$$.innerHTML = `
             <h2>${pokemon.name.toUpperCase()}</h2> 
@@ -134,6 +137,7 @@ const drawOptionTypes = () => {
     }
 }
 
+
 const inputSearch = () => {
     const searchInput = document.querySelector('[type=search]');
     searchInput.addEventListener('input',event => {
@@ -150,6 +154,7 @@ const inputSearch = () => {
 const drawSectionFilters = () => {
     drawOptionTypes();
     inputSearch();
+    addEventSelector();
     
 }
 
