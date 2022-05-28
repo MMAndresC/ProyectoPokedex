@@ -17,12 +17,25 @@ h2{
     background-color: cornflowerblue;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
-.pokedex-card{
+li:hover{
+    width: 30vw;
+    height: 30vh;
+}
+
+.pokedex-card{ //li
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 20vw;  
+    height: 25vh;
+    cursor: pointer;
+    
+
+
+  
 
     &--image{
         object-fit: contain;
@@ -79,6 +92,7 @@ h2{
 .sort{
     flex:2
 }
+
 
 
 

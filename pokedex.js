@@ -57,22 +57,78 @@ const sortByName = (item,itemAfter) =>{
 
 
 const sortBySelected = (listPokemon) =>{
-    const selector = document.querySelector('select');
-    if(selector.value == 'name'){
+    const selector$$ = document.querySelector('select');
+    if(selector$$.value == 'name'){
         listPokemon.sort(sortByName);
     }else{
-        listPokemon.sort((item, afterItem) => Number(item[selector.value]) - Number(afterItem[selector.value]));        
+        listPokemon.sort((item, afterItem) => Number(item[selector$$.value]) - Number(afterItem[selector$$.value]));        
     }
 }
 
 const addEventSelector = () =>{
-    selector = document.querySelector('select');
-    selector.addEventListener('change',event =>{
+    selector$$ = document.querySelector('select');
+    selector$$.addEventListener('change',event =>{
         clearSelections();
         clearInput();
         drawPokedex(MAPPED_POKEMON);
     })
 }
+
+const createDetailsCard =(containerLi$$,pokemon)=>{  //Crea la carta con mas detalles
+    containerLi$$.addEventListener('click', event =>{
+        containerLi$$.innerText = '';
+        containerLi$$.className = 'pokedex-card-details';
+        containerLi$$.innerHTML = `
+            <div>
+                <div> <img src= ${pokemon.sprite} </div>
+                <div>
+                    <span>
+                        <h3>Number:</h3>
+                        <p>${pokemon.id}</p>
+                    </span>
+                    <span>
+                        <h3>Name:</h3>
+                        <p>${pokemon.name}</p>
+                    </span>
+                    <span>
+                        <h3>Height:</h3>
+                        <p>${pokemon.height}</p>
+                    </span>
+                    <span>
+                        <h3>Weight:</h3>
+                        <p>${pokemon.weight}</p>
+                    </span>
+                </div>
+                <div class="container-abilities">
+                    <h3>Types:</h3>
+                    <h3 class="abilities">Abilities:</h3>
+                </div>
+            </div>
+        `;
+        const divAbilities$$= document.querySelector('.container-abilities');
+        const h3$$ = document.querySelector('.abilities');
+        for(type of pokemon.types){
+            const p$$ = document.createElement('p');
+            p$$.innerText = type;
+            divAbilities$$.insertBefore(p$$,h3$$);
+        }
+  
+        for(ability of pokemon.abilities){
+            const p$$ = document.createElement('p');
+            p$$.innerText = ability;
+            divAbilities$$.appendChild(p$$);
+        }
+    })
+    
+
+     
+    
+}
+
+const createBasicCard = () =>{
+    
+}
+
 
 const drawPokedex = (listPokemon) => { 
     let listSortedPokemon = listPokemon;
@@ -84,12 +140,22 @@ const drawPokedex = (listPokemon) => {
     for(pokemon of listSortedPokemon) {
         const li$$ = document.createElement('li'); 
         li$$.innerHTML = `
-            <h2>${pokemon.name.toUpperCase()}</h2> 
+            <header>
+                <span>#${pokemon.id}</span>
+                <h2>${pokemon.name.toUpperCase()}</h2> 
+            </header>
             <div class="pokedex-card--image-container">
                 <img src=${pokemon.img} alt=${pokemon.name} class="pokedex-card--image"/>
             </div>
         `;
+        for(type of pokemon.types){
+            const p$$ = document.createElement('p');
+            p$$.className = type;
+            p$$.innerText = `${type}`;
+            li$$.appendChild(p$$);
+        }
         li$$.className = 'pokedex-card';
+        createDetailsCard(li$$,pokemon);
         olPokemon$$.appendChild(li$$);
     }
 }
@@ -132,36 +198,34 @@ const addEventCheckbox = (checkbox) => {
 }
 
 const drawOptionTypes = () => {
-    const div = document.querySelector('.option-types');
+    const div$$ = document.querySelector('.option-types');
     for (const type of TYPES){
-        const checkbox = document.createElement('input');
-        checkbox.setAttribute('type','checkbox');
-        checkbox.setAttribute('name',`${type}`);
-        checkbox.style['background-image'] = `url("../images/svgTypes/icon_type_${type}.svg")`;
-        checkbox.className = 'option-types-checkbox';
-        div.appendChild(checkbox);
-        addEventCheckbox(checkbox);
+        const checkbox$$ = document.createElement('input');
+        checkbox$$.setAttribute('type','checkbox');
+        checkbox$$.setAttribute('name',`${type}`);
+        checkbox$$.style['background-image'] = `url("../images/svgTypes/icon_type_${type}.svg")`;
+        checkbox$$.className = 'option-types-checkbox';
+        div$$.appendChild(checkbox$$);
+        addEventCheckbox(checkbox$$);
     }
 }
 
-
-
 //Pone el value del input de busqueda a vacio
 const clearInput = () =>{
-    const inputSearch = document.querySelector(`[type=search]`);
-    inputSearch.value = '';
+    const inputSearch$$ = document.querySelector(`[type=search]`);
+    inputSearch$$.value = '';
 }
 
 //Coloca la opcion de Id por defecto en el select
 const clearSelect = () =>{
-    const select = document.querySelector('select');
-    select.value = 'id';
+    const select$$ = document.querySelector('select');
+    select$$.value = 'id';
 }
 
 const inputSearch = () => {
-    const searchInput = document.querySelector('[type=search]');
-    searchInput.addEventListener('input',event => {
-        drawPokedex(filterPokemonByNameId(searchInput.value));
+    const searchInput$$ = document.querySelector('[type=search]');
+    searchInput$$.addEventListener('input',event => {
+        drawPokedex(filterPokemonByNameId(searchInput$$.value));
         clearSelections();
         clearSelect();
     })     

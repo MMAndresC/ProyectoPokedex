@@ -135,6 +135,11 @@ h2 {
       flex-wrap: wrap;
 }
 
+li:hover {
+  width: 30vw;
+  height: 30vh;
+}
+
 .pokedex-card {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -143,7 +148,11 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 20vw;
+  height: 25vh;
+  cursor: pointer;
 }
 
 .pokedex-card--image {
