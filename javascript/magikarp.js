@@ -1,6 +1,7 @@
 let POINTS = 0;
-let FISH = [];
 let REPETITIONS = 0;
+let BEFORE = -1; //indice de la animacion que se esta ejecuatando anterior a la nueva
+const TOTALFISH = 6;
 
 
 const catchIt = () =>{
@@ -8,46 +9,48 @@ const catchIt = () =>{
     for (div of div$$){
         div.addEventListener('click',event =>{
             let position;
-            console.log('evento');
-            clearInterval(chosePosition);
             POINTS++;
             p$$ = document.querySelector('p.points');
             p$$.innerText = POINTS;
             position = div.id.slice(8);
-            console.log('position');
-            FISH[position]='off';
             div.classList.remove('animated');
         })
     }
 }
 
-const chosePosition = async() =>{
+function play(index) { //Consultado en MDN
+    document.querySelector(`#position${index}`).classList.remove('animated'); 
+    window.requestAnimationFrame(function(time) {
+      window.requestAnimationFrame(function(time) {
+        document.querySelector(`#position${index}`).classList.add('animated');
+      });
+    });
+  }
+
+const chosePosition = (interval) =>{
     REPETITIONS ++;
     if (REPETITIONS <= 30){
-        let index = Math.floor(Math.random() * (6));
-        console.log('indice',index);
-        while(FISH[index] == 'on'){
-            index = FISH.indexOf('off');
+        let index = Math.floor(Math.random() * (TOTALFISH));
+        if(index == BEFORE){ //Pongo 6 porque son los div que tengo, seria mejor meterlo en una const 
+            index ===TOTALFISH ? index-- : index++; 
         }
-        FISH[index] = 'on';
+        BEFORE = index;
         const div$$ = document.querySelector(`#position${index}`);
-        console.log('indice', index,div$$);
-        div$$.classList.add('animated');
+        play(index);
     }else{
         clearInterval(interval);
-        console.log('cierra');
+        //AQUI TERMINA EL JUEGO
     } 
 }
 
 
 
-const initMagikarp = () =>{
-    for(let i = 0; i < 7; i++){
-        FISH.push('off'); //inicializar la array que controla los fish animados
-    }
+const initMagikarp = async() =>{
     catchIt();
-    chosePosition();//esto lo tiene que hacer el click del boton de inicio
-    let interval = setInterval(chosePosition,1500);
+    await chosePosition();//esto lo tiene que hacer el click del boton de inicio
+    const interval = setInterval(async function(){
+        await chosePosition(interval);
+    },2000); 
 }
 
 initMagikarp();
