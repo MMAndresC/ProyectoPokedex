@@ -29,7 +29,7 @@ function play(index) { //Consultado en MDN
 
 const chosePosition = (interval) =>{
     REPETITIONS ++;
-    if (REPETITIONS <= 30){
+    if (REPETITIONS <= 15){ //Poner el juego a 30 segundos
         let index = Math.floor(Math.random() * (TOTALFISH));
         if(index == BEFORE){ //Pongo 6 porque son los div que tengo, seria mejor meterlo en una const 
             index ===TOTALFISH ? index-- : index++; 
@@ -39,18 +39,41 @@ const chosePosition = (interval) =>{
         play(index);
     }else{
         clearInterval(interval);
-        //AQUI TERMINA EL JUEGO
+        const h2 = document.createElement('h2');
+        h2.innerText = `Time's out`;
+        h2.className = 'endgame';
+        document.body.appendChild(h2);
+        const button = document.querySelector('button.begin');
+        button.disabled = false;
     } 
 }
 
-
-
-const initMagikarp = async() =>{
-    catchIt();
+const startGame = async() =>{
     await chosePosition();//esto lo tiene que hacer el click del boton de inicio
     const interval = setInterval(async function(){
         await chosePosition(interval);
-    },2000); 
+    },2000);
 }
 
-initMagikarp();
+const buttonStart = () =>{
+    const button$$ = document.querySelector('button.begin');
+    button$$.addEventListener('click',event =>{
+        if(REPETITIONS !== 0){
+            REPETITIONS = 0; //reiniciar juego
+            const h2 = document.querySelector('h2.endgame');
+            h2.remove();
+            const scoreboard = document.querySelector('p.points');
+            scoreboard.innerText = 0;
+        }
+        button$$.disabled = true;
+        startGame();
+    })
+}
+
+const init = async() =>{
+    catchIt();
+    buttonStart();
+    
+}
+
+init();

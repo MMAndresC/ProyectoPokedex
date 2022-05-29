@@ -2,7 +2,17 @@
 
 body{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+}
+
+header{
+    margin: 5% 0;
+}
+
+h1{
+    font-size:3rem;
+   
 }
 
 main{
@@ -12,10 +22,17 @@ main{
 
 .scoreboard{
     background-color: blueviolet;
-    width:800px;
-    height: 40%;
-    margin-bottom: 5%;
+    display: flex;
+    width:250px;
+    font-size: 2rem;
+    justify-content: space-evenly;
+}
 
+.container-scoreboard{
+    display: flex;
+    flex-direction:column;
+    margin-top:3%;
+    align-items: center;
 }
 
 .container{
