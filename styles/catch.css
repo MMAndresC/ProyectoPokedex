@@ -124,7 +124,23 @@ input {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-left: 10%;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.done {
+  background-position: center;
+}
+
+.done:hover {
+  cursor: not-allowed;
 }
 
 section div {
@@ -148,13 +164,13 @@ section div:hover {
   margin-bottom: 84px;
 }
 
-.position1 {
+.position0 {
   margin-left: 217px;
   background-image: url("../images/catch/question_mark80x80.png");
 }
 
-.position2 {
-  margin-right: 104px;
+.position1 {
+  margin-right: -22px;
   background-image: url("../images/catch/question_mark80x80.png");
 }
 
@@ -165,12 +181,12 @@ section div:hover {
   margin-bottom: 52px;
 }
 
-.position4 {
+.position3 {
   margin-right: 20px;
   margin-left: 38px;
 }
 
-.position5 {
+.position4 {
   margin-left: 97px;
 }
 
@@ -181,18 +197,95 @@ section div:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.position7 {
+.position6 {
   margin-left: -10px;
 }
 
-.position8 {
+.position7 {
   margin-left: -68px;
 }
 
-.position10 {
+.position9 {
   margin-right: -29px;
+}
+
+.character {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.character p {
+  margin-left: 25px;
+  width: 76%;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+.character-container-img {
+  width: 400px;
+  height: 200px;
+}
+
+.character-container-img img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.character-container-pokeball {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 400px;
+  height: 50px;
+}
+
+.character-container-pokeball span {
+  background-image: url("../images/catch/Master_Ball_Origin.png");
+  width: 40px;
+  height: 40px;
+}
+
+.endgame {
+  margin-top: 5%;
+  margin-left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 100px;
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.endgame img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.endgame button {
+  width: 80px;
 }
 /*# sourceMappingURL=catch.css.map */

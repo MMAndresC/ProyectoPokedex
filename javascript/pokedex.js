@@ -2,7 +2,7 @@ const MAPPED_POKEMON = [];
 const TYPES = [];
 let BEFORE_SELECTED = '';
  
-  
+  ///CONVERTIR A CM Y KG ??????? // alt ????
 
 
 const getDataPokemonFromApi = (url) => {
