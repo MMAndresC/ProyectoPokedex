@@ -33,10 +33,14 @@ const uncover = () =>{
 }
 
 const endgame = () =>{
+    uncover();
     const div$$ = document.querySelector('.endgame');
     const img$$ = document.querySelector('.character-container-img img');
     const button$$ = document.createElement('button');
-    button$$.innerText = 'Try Again?';
+    POKEBALLS 
+        ? button$$.innerHTML = `You Win <br> Try Again?`
+        : button$$.innerHTML = `You Looose <br> Try Again?`
+
     button$$.addEventListener('click', event =>{
         window.location.reload();
     });
@@ -87,7 +91,6 @@ const addEventCatch = () =>{
 const initCatch = () => {
     randomPlacement();
     addEventCatch();
-
 }
 
 initCatch();

@@ -14,7 +14,7 @@
 main{
     display: flex;
     justify-content: center;
-    //align-items: baseline;
+    
 
 }
 
@@ -126,21 +126,15 @@ section div{
 }
 
 .endgame{
-    margin-top:5%;
-    margin-left:50%;
-    transform: translateX(-50%);
+    margin-left:78%;
     height:100px;
     width:300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    img{
-        object-fit: contain;
-    }
-
     button{
-        width:80px;
+        width:100px;
 
     }
 }

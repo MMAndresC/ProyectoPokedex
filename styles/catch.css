@@ -262,10 +262,7 @@ section div:hover {
 }
 
 .endgame {
-  margin-top: 5%;
-  margin-left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  margin-left: 78%;
   height: 100px;
   width: 300px;
   display: -webkit-box;
@@ -280,12 +277,7 @@ section div:hover {
           justify-content: center;
 }
 
-.endgame img {
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
 .endgame button {
-  width: 80px;
+  width: 100px;
 }
 /*# sourceMappingURL=catch.css.map */
