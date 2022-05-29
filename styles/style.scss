@@ -1,7 +1,30 @@
 @import "reset";
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Miltonian&family=Miltonian+Tattoo&display=swap');
+
+
+body{
+    font-family: 'Miltonian Tattoo', cursive;
+}
+
+h1{
+    font-size:7rem;
+    text-align: center;
+    margin: 7% 0;
+}
 
 h2{
     text-align: center;
+}
+
+.minijuegos{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2rem;
+    margin-top:10%;
+
+    a, span{
+        margin:3%;
+    }
 }
 
 
@@ -9,6 +32,7 @@ h2{
     display:flex;
     flex-direction:column;
     width:100vw;
+    border: 10px solid rgb(199, 13, 51);
 }
 
 
@@ -20,18 +44,26 @@ h2{
     
 }
 
-li:hover{
-    width: 30vw;
-    height: 30vh;
+/* li:hover{ ///REVISARLO QUE NO FUNCIONA BIEN
+    height: 35vh;
+} */
+
+.pokedex-card-details{ //EDITANDO
+    display: flex;
+    width: 500px;  
+    height: 600px;
+    cursor: pointer;
+    margin: 5% 3%;
 }
 
 .pokedex-card{ //li
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 20vw;  
-    height: 25vh;
+    width: 500px;  
+    height: 600px;
     cursor: pointer;
+    margin: 5% 3%;
     
 
 
@@ -58,7 +90,9 @@ li:hover{
 .filters{
     display:flex;
     align-items:center;
-    background-color: bisque;
+    align-content:center;
+    flex-wrap: wrap;
+    background-color: rgb(199, 13, 51);
     height: 25vh;
     width: 100vw;   
 }
@@ -82,7 +116,9 @@ li:hover{
 }
 
 .option-types-container{
-    flex:7;
+    //width:500px;
+    flex:4;
+
 }
 
 .search-bar{

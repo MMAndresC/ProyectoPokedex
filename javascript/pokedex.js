@@ -24,7 +24,8 @@ const extractData = (data) =>{
     const aux = {};
     aux.name = data.name;
     aux.id = data.id;
-    aux.sprite = data.sprites.front_default;
+    //aux.sprite = data.sprites.front_default;
+    aux.sprite = data.sprites.versions['generation-v']['black-white'].animated.front_default;
     aux.img = data.sprites.other.dream_world.front_default;
     aux.types =[];
     aux.types = data.types.map(type => type.type.name );
@@ -99,7 +100,7 @@ const createDetailsCard =(containerLi$$,pokemon)=>{
             containerLi$$.innerText = '';
             containerLi$$.className = 'pokedex-card-details';
             containerLi$$.innerHTML = `
-                <div>
+                <div class>
                     <div> <img src= ${pokemon.sprite} </div>
                     <div>
                         <span>
@@ -119,26 +120,28 @@ const createDetailsCard =(containerLi$$,pokemon)=>{
                             <p>${pokemon.weight}</p>
                         </span>
                     </div>
-                    <div class="container-abilities">
-                        <h3>Types:</h3>
-                        <h3 class="abilities">Abilities:</h3>
-                    </div>
-                </div>
+                </div>   
             `;
-            const divAbilities$$= document.querySelector('.container-abilities');
-            const h3$$ = document.querySelector('.abilities');
+      
+            const divAbilities$$= document.createElement('div');
+            divAbilities$$.className = "container-abilities";
+            let h3$$ = document.createElement('h3');
+            divAbilities$$.appendChild(h3$$);
+            h3$$.innerText = "Types:";
             for(type of pokemon.types){
                 const p$$ = document.createElement('p');
                 p$$.innerText = type;
-                divAbilities$$.insertBefore(p$$,h3$$);
+                divAbilities$$.appendChild(p$$);
             }
-  
+            h3$$ = document.createElement('h3');
+            h3$$.innerText = "Abilities:";
+            divAbilities$$.appendChild(h3$$);
             for(ability of pokemon.abilities){
                 const p$$ = document.createElement('p');
                 p$$.innerText = ability;
                 divAbilities$$.appendChild(p$$);
             }
-
+            containerLi$$.appendChild(divAbilities$$);
         }else{
             createBasicCard(containerLi$$,pokemon);
         }

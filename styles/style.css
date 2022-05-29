@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Miltonian&family=Miltonian+Tattoo&display=swap");
 *,
 *:before,
 *:after {
@@ -110,8 +111,33 @@ input {
   border-radius: 0;
 }
 
+body {
+  font-family: 'Miltonian Tattoo', cursive;
+}
+
+h1 {
+  font-size: 7rem;
+  text-align: center;
+  margin: 7% 0;
+}
+
 h2 {
   text-align: center;
+}
+
+.minijuegos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 2rem;
+  margin-top: 10%;
+}
+
+.minijuegos a, .minijuegos span {
+  margin: 3%;
 }
 
 .container {
@@ -123,6 +149,7 @@ h2 {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 100vw;
+  border: 10px solid #c70d33;
 }
 
 #pokedex {
@@ -136,8 +163,17 @@ h2 {
 }
 
 li:hover {
-  width: 30vw;
-  height: 30vh;
+  height: 35vh;
+}
+
+.pokedex-card-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 500px;
+  height: 600px;
+  cursor: pointer;
+  margin: 5% 3%;
 }
 
 .pokedex-card {
@@ -150,9 +186,10 @@ li:hover {
           flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  width: 20vw;
-  height: 25vh;
+  width: 500px;
+  height: 600px;
   cursor: pointer;
+  margin: 5% 3%;
 }
 
 .pokedex-card--image {
@@ -177,7 +214,11 @@ li:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: bisque;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #c70d33;
   height: 25vh;
   width: 100vw;
 }
@@ -204,9 +245,9 @@ li:hover {
 }
 
 .option-types-container {
-  -webkit-box-flex: 7;
-      -ms-flex: 7;
-          flex: 7;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
 }
 
 .search-bar {
