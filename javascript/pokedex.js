@@ -123,22 +123,26 @@ const createDetailsCard =(containerLi$$,pokemon)=>{
       
             const divAbilities$$= document.createElement('div');
             divAbilities$$.className = "container-abilities";
+            const div =document.createElement('div');
             let h3$$ = document.createElement('h3');
-            divAbilities$$.appendChild(h3$$);
+            div.appendChild(h3$$);
             h3$$.innerText = "Types:";
             for(type of pokemon.types){
                 const p$$ = document.createElement('p');
                 p$$.innerText = type;
-                divAbilities$$.appendChild(p$$);
+                div.appendChild(p$$);
             }
+            divAbilities$$.appendChild(div);
+            const div2 = document.createElement('div');
             h3$$ = document.createElement('h3');
             h3$$.innerText = "Abilities:";
-            divAbilities$$.appendChild(h3$$);
+            div2.appendChild(h3$$);
             for(ability of pokemon.abilities){
                 const p$$ = document.createElement('p');
                 p$$.innerText = ability;
-                divAbilities$$.appendChild(p$$);
+                div2.appendChild(p$$);
             }
+            divAbilities$$.appendChild(div2);
             containerLi$$.appendChild(divAbilities$$);
         }else{
             createBasicCard(containerLi$$,pokemon);

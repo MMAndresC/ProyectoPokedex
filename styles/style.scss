@@ -114,7 +114,17 @@ li:hover{ ///REVISARLO QUE NO FUNCIONA BIEN
 .container-abilities{
     font-size:15px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    
+    div{
+        margin: 0 20px;
+        margin-top: 5px;
+    }
+
+    h3{
+        text-decoration: underline;
+        margin-bottom:2px;
+    }
 }
 
 
