@@ -271,4 +271,18 @@ main {
 #position5 {
   margin-right: -150px;
 }
+
+.back-pokedex {
+  margin: 100px 50px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.back-pokedex button {
+  width: 60px;
+  height: 60px;
+  background-image: url("../images/arrow-circle-up_blue.png");
+  background-size: contain;
+  cursor: pointer;
+}
 /*# sourceMappingURL=magikarp.css.map */

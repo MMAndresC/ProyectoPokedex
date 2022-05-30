@@ -38,8 +38,8 @@ const endgame = () =>{
     const img$$ = document.querySelector('.character-container-img img');
     const button$$ = document.createElement('button');
     POKEBALLS 
-        ? button$$.innerHTML = `You Win <br> Try Again?`
-        : button$$.innerHTML = `You Looose <br> Try Again?`
+        ? button$$.innerHTML = `Winner Try Again?`
+        : button$$.innerHTML = `Loooser Try Again?`
 
     button$$.addEventListener('click', event =>{
         window.location.reload();
@@ -49,6 +49,7 @@ const endgame = () =>{
     }else{
         img$$.setAttribute('src','./images/catch/victory.webp');
     }
+    button$$.className = 'button-endgame';
     div$$.appendChild(button$$);
     POKEBALLS = 5;
 }
