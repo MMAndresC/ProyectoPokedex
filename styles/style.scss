@@ -56,7 +56,8 @@ h2{
     background-color: rgb(169, 165, 165);
     display: flex;
     flex-wrap: wrap;
-    padding: 3% 0;   
+    //padding: 3% 0;  
+    padding-bottom:300px; 
 }
 
 li:hover{ 
@@ -178,7 +179,6 @@ li:hover{
 
 
 .option-types{
-    //width: 60%;
     display: flex;
     
     flex-wrap: wrap;
@@ -197,8 +197,8 @@ li:hover{
 }
 
 .option-types-container{
-    //width:500px;
     flex:4;
+    margin-left: 30px;
 
 }
 

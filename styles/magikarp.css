@@ -121,6 +121,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #a9a5a5;
 }
 
 header {
@@ -142,7 +143,8 @@ main {
 }
 
 .scoreboard {
-  background-color: blueviolet;
+  background-color: #d67b3b;
+  margin: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -284,5 +286,46 @@ main {
   background-image: url("../images/arrow-circle-up_blue.png");
   background-size: contain;
   cursor: pointer;
+}
+
+.begin {
+  background-color: #cf245f;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#fcd34d), color-stop(#ef4444), to(#ec4899));
+  background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+  border: 0;
+  border-radius: .25rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.125rem;
+  /* 18px */
+  font-weight: 600;
+  line-height: 1.75rem;
+  /* 28px */
+  padding: 1rem 1.25rem;
+  text-align: center;
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+.begin:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media (min-width: 1024px) {
+  .begin {
+    font-size: 1.5rem;
+    /* 24px */
+    padding: 1rem 1.5rem;
+    line-height: 2rem;
+    /* 32px */
+  }
 }
 /*# sourceMappingURL=magikarp.css.map */

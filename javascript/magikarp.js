@@ -32,7 +32,7 @@ function play(index) { //Consultado en MDN
 
 const chosePosition = (interval) =>{
     REPETITIONS ++;
-    if (REPETITIONS <= 15){ //Poner el juego a 30 segundos
+    if (REPETITIONS <= 10){ //Poner el juego a x segundos
         let index = Math.floor(Math.random() * (TOTALFISH));
         if(index == BEFORE){ //Pongo 6 porque son los div que tengo, seria mejor meterlo en una const 
             index ===TOTALFISH ? index-- : index === 5 ? index-- : index++ ; 

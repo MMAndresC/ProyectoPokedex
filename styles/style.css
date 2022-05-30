@@ -171,7 +171,7 @@ h2 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 3% 0;
+  padding-bottom: 300px;
 }
 
 li:hover {
@@ -351,6 +351,7 @@ li:hover {
   -webkit-box-flex: 4;
       -ms-flex: 4;
           flex: 4;
+  margin-left: 30px;
 }
 
 .search-bar, .sort {
