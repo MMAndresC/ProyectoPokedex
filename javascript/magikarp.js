@@ -19,7 +19,10 @@ const catchIt = () =>{
 }
 
 function play(index) { //Consultado en MDN
-    document.querySelector(`#position${index}`).classList.remove('animated'); 
+    console.log(index);
+    if (document.querySelector(`#position${index}`).classList.contains('animated')){
+        document.querySelector(`#position${index}`).classList.remove('animated'); 
+    }
     window.requestAnimationFrame(function(time) {
       window.requestAnimationFrame(function(time) {
         document.querySelector(`#position${index}`).classList.add('animated');
@@ -32,7 +35,7 @@ const chosePosition = (interval) =>{
     if (REPETITIONS <= 15){ //Poner el juego a 30 segundos
         let index = Math.floor(Math.random() * (TOTALFISH));
         if(index == BEFORE){ //Pongo 6 porque son los div que tengo, seria mejor meterlo en una const 
-            index ===TOTALFISH ? index-- : index++; 
+            index ===TOTALFISH ? index-- : index === 5 ? index-- : index++ ; 
         }
         BEFORE = index;
         const div$$ = document.querySelector(`#position${index}`);
@@ -49,10 +52,11 @@ const chosePosition = (interval) =>{
 }
 
 const startGame = async() =>{
+    POINTS=0;
     await chosePosition();//esto lo tiene que hacer el click del boton de inicio
     const interval = setInterval(async function(){
         await chosePosition(interval);
-    },2000);
+    },1000);
 }
 
 const buttonStart = () =>{

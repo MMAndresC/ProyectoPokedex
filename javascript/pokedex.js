@@ -2,7 +2,6 @@ const MAPPED_POKEMON = [];
 const TYPES = [];
 let BEFORE_SELECTED = '';
  
-  ///CONVERTIR A CM Y KG ??????? // alt ????
 
 
 const getDataPokemonFromApi = (url) => {
@@ -100,12 +99,11 @@ const createDetailsCard =(containerLi$$,pokemon)=>{
             containerLi$$.innerText = '';
             containerLi$$.className = 'pokedex-card-details';
             containerLi$$.innerHTML = `
-                <div class>
-                    <div> <img src= ${pokemon.sprite} </div>
-                    <div>
+                <div class ="pokedex-card-details-header">
+                    <div class="details-header__img"> <img src= ${pokemon.sprite} /></div>
+                    <div class="details-header__info">
                         <span>
-                            <h3>Number:</h3>
-                            <p>${pokemon.id}</p>
+                            <p class="details-header__id">#${pokemon.id}</p>
                         </span>
                         <span>
                             <h3>Name:</h3>
@@ -113,11 +111,11 @@ const createDetailsCard =(containerLi$$,pokemon)=>{
                         </span>
                         <span>
                             <h3>Height:</h3>
-                            <p>${pokemon.height}</p>
+                            <p>${pokemon.height}"</p>
                         </span>
                         <span>
                             <h3>Weight:</h3>
-                            <p>${pokemon.weight}</p>
+                            <p>${pokemon.weight}lbs</p>
                         </span>
                     </div>
                 </div>   
